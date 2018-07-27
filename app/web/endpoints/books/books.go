@@ -11,9 +11,22 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Users struct which contains
+// an array of users
+type Users struct {
+	Users []User `json:"users"`
+}
+
 // Series struct which contains
 // an array of series
 type Series struct {
+	Series []Serie `json:"series"`
+}
+
+// User struct which contains a name
+// and an array of series
+type User struct {
+	Name   string  `json:"name"`
 	Series []Serie `json:"series"`
 }
 
@@ -33,6 +46,39 @@ type Book struct {
 	Position    int    `json:"position"`
 	Bought      bool   `json:"bought"`
 	SeriesTitle string
+}
+
+// getData func
+func getData(c *gin.Context) Series {
+	// Open our jsonFile
+	jsonFile, err := os.Open("app/data/index.json")
+
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(200, gin.H{"error": "Couldn't find any books"})
+	}
+
+	defer jsonFile.Close()
+
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+
+	users := Users{}
+
+	json.Unmarshal(byteValue, &users)
+
+	series := Series{}
+
+	for i := 0; i < len(users.Users); i++ {
+		if users.Users[i].Name == c.Query("name") {
+			return Series{users.Users[i].Series}
+		}
+
+		for j := 0; j < len(users.Users[i].Series); j++ {
+			series.Series = append(series.Series, users.Users[i].Series[j])
+		}
+	}
+
+	return series
 }
 
 // All func
@@ -57,39 +103,17 @@ func Latest(c *gin.Context) {
 	c.JSON(200, gin.H{"Latest Books": response.Books})
 }
 
-// getData func
-func getData(c *gin.Context) Series {
-	// Open our jsonFile
-	jsonFile, err := os.Open("app/data/index.json")
-
-	if err != nil {
-		fmt.Println(err)
-		c.JSON(200, gin.H{"error": "Couldn't find any books"})
-	}
-
-	defer jsonFile.Close()
-
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	var series Series
-
-	json.Unmarshal(byteValue, &series)
-
-	return series
-}
-
 // ToBuy func
 func ToBuy(c *gin.Context) {
 	series := getData(c)
-
 	response := Series{}
+
 	for i := 0; i < len(series.Series); i++ {
 		group := series.Series[i]
 		group.Books = nil
 		response.Series = append(response.Series, group)
 		for j := 0; j < len(series.Series[i].Books); j++ {
 			releaseDate, _ := time.Parse(time.RFC822, series.Series[i].Books[j].ReleaseDate)
-			fmt.Println(series.Series[i].Books[j].Title, ": ", releaseDate, ": ", inFuture(releaseDate))
 			if !series.Series[i].Books[j].Bought && !inFuture(releaseDate) {
 				book := series.Series[i].Books[j]
 				response.Series[i].Books = append(response.Series[i].Books, book)
@@ -103,7 +127,6 @@ func ToBuy(c *gin.Context) {
 // Upcoming func
 func Upcoming(c *gin.Context) {
 	series := getData(c)
-
 	response := Series{}
 
 	for i := 0; i < len(series.Series); i++ {
