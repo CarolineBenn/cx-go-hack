@@ -49,7 +49,7 @@ type Book struct {
 }
 
 // getData func
-func getData(c *gin.Context) Series {
+func getData(c *gin.Context) Users {
 	// Open our jsonFile
 	jsonFile, err := os.Open("app/data/index.json")
 
@@ -66,6 +66,12 @@ func getData(c *gin.Context) Series {
 
 	json.Unmarshal(byteValue, &users)
 
+	return users
+}
+
+// getSeries func
+func getSeries(c *gin.Context) Series {
+	users := getData(c)
 	series := Series{}
 
 	for i := 0; i < len(users.Users); i++ {
@@ -83,14 +89,14 @@ func getData(c *gin.Context) Series {
 
 // All func
 func All(c *gin.Context) {
-	series := getData(c)
+	series := getSeries(c)
 
 	c.JSON(200, gin.H{"Books": series})
 }
 
 // Latest func
 func Latest(c *gin.Context) {
-	series := getData(c)
+	series := getSeries(c)
 
 	response := Serie{}
 	for i := 0; i < len(series.Series); i++ {
@@ -105,7 +111,7 @@ func Latest(c *gin.Context) {
 
 // ToBuy func
 func ToBuy(c *gin.Context) {
-	series := getData(c)
+	series := getSeries(c)
 	response := Series{}
 
 	for i := 0; i < len(series.Series); i++ {
@@ -126,7 +132,7 @@ func ToBuy(c *gin.Context) {
 
 // Upcoming func
 func Upcoming(c *gin.Context) {
-	series := getData(c)
+	series := getSeries(c)
 	response := Series{}
 
 	for i := 0; i < len(series.Series); i++ {
@@ -153,7 +159,7 @@ func inFuture(check time.Time) bool {
 
 // BookRoute func
 func BookRoute(c *gin.Context) {
-	series := getData(c)
+	series := getSeries(c)
 
 	var serie Serie
 	for i := 0; i < len(series.Series); i++ {
