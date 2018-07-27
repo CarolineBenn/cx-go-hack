@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-
+	"strings"
 	"github.com/gin-gonic/gin"
 )
 
@@ -40,8 +40,6 @@ func Books(c *gin.Context) {
 	if err != nil {
 		fmt.Println(err)
 		c.JSON(200, gin.H{"books": "false"})
-	} else {
-		c.JSON(200, gin.H{"books": "true"})
 	}
 
 	defer jsonFile.Close()
@@ -53,7 +51,45 @@ func Books(c *gin.Context) {
 	json.Unmarshal(byteValue, &series)
 
 	for i := 0; i < len(series.Series); i++ {
-		fmt.Println("Series Title: " + series.Series[i].Title)
+		fmt.Println(series.Series[i].Title + " by " + series.Series[i].Author + " (" , len(series.Series[i].Books) , "books in series)")
 	}
 
+	c.JSON(200, gin.H{"series": series.Series})
 }
+
+
+func BookRoute(c *gin.Context) {
+	// Open our jsonFile
+	jsonFile, err := os.Open("app/data/index.json")
+
+	if err != nil {
+		fmt.Println(err)
+		c.JSON(200, gin.H{"books": "false"})
+	}
+
+	defer jsonFile.Close()
+
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+
+	var series Series
+	json.Unmarshal(byteValue, &series)
+
+	var serie Serie
+	for i := 0; i < len(series.Series); i++ {
+		var title = strings.ToLower(series.Series[i].Title)
+		var titleWithHypens = strings.Replace(title, " ", "-", -1)
+		var id = strings.ToLower(c.Param("id"))
+
+		if (titleWithHypens == id) {
+			serie = series.Series[i]
+		}
+	}
+
+	fmt.Println(serie)
+	if (serie.Author != "") {
+		c.JSON(200, gin.H{"series": serie})
+	} else {
+		c.JSON(200, gin.H{"error":"404 – Not found"})
+	}
+}
+
