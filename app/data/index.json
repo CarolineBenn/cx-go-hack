@@ -92,8 +92,68 @@
           "books" : [
             {
               "title" : "Crescent City",
-              "releaseDate" : "20 Oct 19 10:00 UTC",
+              "releaseDate" : "31 Dec 19 10:00 UTC",
               "position": 1,
+              "bought": false
+            }
+          ]
+        },
+        {
+          "author" : "Gabaldon, Diana",
+          "title" : "Outlander",
+          "books" : [
+            {
+              "title" : "Cross Stitch",
+              "releaseDate" : "1991",
+              "position": 1,
+              "bought": true
+            },
+            {
+              "title" : "Dragonfly in Amber",
+              "releaseDate" : "1992",
+              "position": 2,
+              "bought": true
+            },
+            {
+              "title" : "Voyager",
+              "releaseDate" : "1993",
+              "position": 3,
+              "bought": true
+            },
+            {
+              "title" : "Drums of Autumn",
+              "releaseDate" : "1996",
+              "position": 4,
+              "bought": true
+            },
+            {
+              "title" : "The Fiery Cross",
+              "releaseDate" : "2001",
+              "position": 5,
+              "bought": true
+            },
+            {
+              "title" : "A Breath of Snow and Ashes",
+              "releaseDate" : "2005",
+              "position": 6,
+              "bought": true
+            },
+            {
+              "title" : "An Echo in the Bone",
+              "releaseDate" : "2009",
+              "position": 7,
+              "bought": true
+            },
+            {
+              "title" : "Written in My Own Heart's Blood",
+              "releaseDate" : "2014",
+              "position": 8,
+              "bought": true
+            },
+            {
+              "title" : "Go Tell the Bees That I Am Gone",
+              "releaseDate" : "31 Dec 18 10:00 UTC",
+              "position": 9,
               "bought": false
             }
           ]
