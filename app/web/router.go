@@ -13,6 +13,7 @@ func SetupRouter() *gin.Engine {
 	r.GET("/books", books.All)
 	r.GET("/books/latest", books.Latest)
 	r.GET("/books/toBuy", books.ToBuy)
+	r.GET("/books/upcoming", books.Upcoming)
 
 	return r
 }

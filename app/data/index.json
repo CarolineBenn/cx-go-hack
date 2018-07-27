@@ -72,9 +72,9 @@
         },
         {
           "title" : "The Troubled Man",
-          "releaseDate" : "2009",
+          "releaseDate" : "18 Aug 2009 10:00 UTC",
           "position": 12,
-          "bought": true
+          "bought": false
         }
       ]
     },
@@ -126,7 +126,7 @@
         },
         {
           "title" : "Kingdom of Ash",
-          "releaseDate" : "23/10/2018",
+          "releaseDate" : "23 Oct 18 10:00 UTC",
           "position": 7,
           "bought": false
         }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -86,7 +87,9 @@ func ToBuy(c *gin.Context) {
 		group.Books = nil
 		response.Series = append(response.Series, group)
 		for j := 0; j < len(series.Series[i].Books); j++ {
-			if !series.Series[i].Books[j].Bought {
+			releaseDate, _ := time.Parse(time.RFC822, series.Series[i].Books[j].ReleaseDate)
+			fmt.Println(series.Series[i].Books[j].Title, ": ", releaseDate, ": ", inFuture(releaseDate))
+			if !series.Series[i].Books[j].Bought && !inFuture(releaseDate) {
 				book := series.Series[i].Books[j]
 				response.Series[i].Books = append(response.Series[i].Books, book)
 			}
@@ -94,4 +97,31 @@ func ToBuy(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{"Books to buy": response})
+}
+
+// Upcoming func
+func Upcoming(c *gin.Context) {
+	series := getData(c)
+
+	response := Series{}
+
+	for i := 0; i < len(series.Series); i++ {
+		group := series.Series[i]
+		group.Books = nil
+		response.Series = append(response.Series, group)
+		for j := 0; j < len(series.Series[i].Books); j++ {
+			releaseDate, _ := time.Parse(time.RFC822, series.Series[i].Books[j].ReleaseDate)
+			if inFuture(releaseDate) {
+				book := series.Series[i].Books[j]
+				response.Series[i].Books = append(response.Series[i].Books, book)
+			}
+		}
+	}
+
+	c.JSON(200, gin.H{"Books to buy": response})
+}
+
+func inFuture(check time.Time) bool {
+	date := time.Now().UTC()
+	return check.After(date)
 }
