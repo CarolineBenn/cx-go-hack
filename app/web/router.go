@@ -10,10 +10,13 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
 	r.GET("/health", endpoints.Health)
-	r.GET("/books", books.All)
+
 	r.GET("/books/latest", books.Latest)
 	r.GET("/books/toBuy", books.ToBuy)
 	r.GET("/books/upcoming", books.Upcoming)
+
+	r.GET("/series/:id", books.BookRoute) // id is title-with-hyphens
+	r.GET("/series", books.All)
 
 	return r
 }

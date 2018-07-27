@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -121,7 +122,31 @@ func Upcoming(c *gin.Context) {
 	c.JSON(200, gin.H{"Books to buy": response})
 }
 
+// inFuture func
 func inFuture(check time.Time) bool {
 	date := time.Now().UTC()
 	return check.After(date)
+}
+
+// BookRoute func
+func BookRoute(c *gin.Context) {
+	series := getData(c)
+
+	var serie Serie
+	for i := 0; i < len(series.Series); i++ {
+		var title = strings.ToLower(series.Series[i].Title)
+		var titleWithHypens = strings.Replace(title, " ", "-", -1)
+		var id = strings.ToLower(c.Param("id"))
+
+		if titleWithHypens == id {
+			serie = series.Series[i]
+		}
+	}
+
+	fmt.Println(serie)
+	if serie.Author != "" {
+		c.JSON(200, gin.H{"series": serie})
+	} else {
+		c.JSON(200, gin.H{"error": "404 – Not found"})
+	}
 }
