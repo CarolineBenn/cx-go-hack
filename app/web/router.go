@@ -1,14 +1,14 @@
 package web
 
 import (
-  "github.com/gin-gonic/gin"
-  "github.com/deliveroo/user-data-service/app/web/endpoints/stats"
+	"github.com/CarolineBenn/cx-go-hack/app/web/endpoints/main"
+	"github.com/gin-gonic/gin"
 )
 
 func SetupRouter() *gin.Engine {
-  r := gin.Default()
+	r := gin.Default()
 
-  r.GET("/user/:id", stats.User)
+	r.GET("/books", main.Books)
 
-  return r
+	return r
 }
