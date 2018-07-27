@@ -5,56 +5,53 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+
+	"github.com/gin-gonic/gin"
 )
 
 // Series struct which contains
-// an array of users
+// an array of series
 type Series struct {
-	Series []Serie `json:"users"`
+	Series []Serie `json:"series"`
 }
 
-// Serie struct which contains a name
-// a type and a list of social links
+// Serie struct which contains a author
+// a title and a list of books
 type Serie struct {
 	Author string `json:"author"`
 	Title  string `json:"title"`
 	Books  []Book `json:"books"`
 }
 
-// Book struct which contains a
-// list of links
+// Book struct which contains a title
+// a release date and position in series
 type Book struct {
 	Title       string `json:"title"`
 	ReleaseDate string `json:"releaseDate"`
 	Position    int    `json:"position"`
 }
 
-func Books() {
+// Books func
+func Books(c *gin.Context) {
 
 	// Open our jsonFile
-	jsonFile, err := os.Open("./../../../data/index.json")
-	// if we os.Open returns an error then handle it
+	jsonFile, err := os.Open("app/data/index.json")
+
 	if err != nil {
 		fmt.Println(err)
+		c.JSON(200, gin.H{"books": "false"})
+	} else {
+		c.JSON(200, gin.H{"books": "true"})
 	}
 
-	fmt.Println("Successfully Opened index.json")
-	// defer the closing of our jsonFile so that we can parse it later on
 	defer jsonFile.Close()
 
-	// read our opened xmlFile as a byte array.
 	byteValue, _ := ioutil.ReadAll(jsonFile)
 
-	// we initialize our Users array
 	var series Series
 
-	// we unmarshal our byteArray which contains our
-	// jsonFile's content into 'users' which we defined above
 	json.Unmarshal(byteValue, &series)
 
-	// we iterate through every user within our users array and
-	// print out the user Type, their name, and their facebook url
-	// as just an example
 	for i := 0; i < len(series.Series); i++ {
 		fmt.Println("Series Title: " + series.Series[i].Title)
 	}

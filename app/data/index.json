@@ -65,6 +65,52 @@
           "position": 5
         }
       ]
+    },
+    {
+      "author" : "Maas, Sarah J",
+      "title" : "Throne of Glass",
+      "books" : [
+        {
+          "title" : "The Assassin's Blade",
+          "releaseDate" : "2014",
+          "position": 0
+        },
+        {
+          "title" : "Throne of Glass",
+          "releaseDate" : "2012",
+          "position": 1
+        },
+        {
+          "title" : "Crown of Midnight",
+          "releaseDate" : "2013",
+          "position": 2
+        },
+        {
+          "title" : "Heir of Fire",
+          "releaseDate" : "2014",
+          "position": 3
+        },
+        {
+          "title" : "Queen of Shadows",
+          "releaseDate" : "2015",
+          "position": 4
+        },
+        {
+          "title" : "Empire of Storms",
+          "releaseDate" : "2016",
+          "position": 5
+        },
+        {
+          "title" : "Tower of Dawn",
+          "releaseDate" : "2017",
+          "position": 6
+        },
+        {
+          "title" : "Kingdom of Ash",
+          "releaseDate" : "23/10/2018",
+          "position": 7
+        }
+      ]
     }
   ]
 }
