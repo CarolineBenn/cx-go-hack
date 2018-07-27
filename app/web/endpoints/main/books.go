@@ -29,7 +29,7 @@ type Book struct {
 	Position    int    `json:"position"`
 }
 
-func main() {
+func Books() {
 
 	// Open our jsonFile
 	jsonFile, err := os.Open("./../../../data/index.json")

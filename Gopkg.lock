@@ -3,14 +3,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:e485a5048d5a067879b24c5210fe447adcba82f8855d381db029b3314ce91c3d"
-  name = "github.com/deliveroo/user-data-service"
+  digest = "1:dbd3707fcc0a2a55d8723e2741d52333d35f826d234535291e178aa35dd44267"
+  name = "github.com/CarolineBenn/cx-go-hack"
   packages = [
     "app/web",
-    "app/web/endpoints/stats",
+    "app/web/endpoints/main",
   ]
   pruneopts = "UT"
-  revision = "a1d439e0c10a868157361759f2258ca06c43a8ea"
+  revision = "3f4700d4b301d827a7b42684cf8b77509b49381c"
 
 [[projects]]
   branch = "master"
@@ -84,8 +84,8 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
-    "github.com/deliveroo/user-data-service/app/web",
-    "github.com/deliveroo/user-data-service/app/web/endpoints/stats",
+    "github.com/CarolineBenn/cx-go-hack/app/web",
+    "github.com/CarolineBenn/cx-go-hack/app/web/endpoints/main",
     "github.com/gin-gonic/gin",
   ]
   solver-name = "gps-cdcl"

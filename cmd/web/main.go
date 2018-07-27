@@ -1,11 +1,11 @@
 package main
 
 import (
-  "github.com/deliveroo/user-data-service/app/web"
+	"github.com/CarolineBenn/cx-go-hack/app/web"
 )
 
 func main() {
-  router := web.SetupRouter()
+	router := web.SetupRouter()
 
-  router.Run(":8080")
+	router.Run(":8080")
 }
