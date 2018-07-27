@@ -10,7 +10,9 @@ func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
 	r.GET("/health", endpoints.Health)
+	r.GET("/books", books.All)
 	r.GET("/books/latest", books.Latest)
+	r.GET("/books/toBuy", books.ToBuy)
 
 	return r
 }

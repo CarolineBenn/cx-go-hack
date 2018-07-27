@@ -29,17 +29,34 @@ type Book struct {
 	Title       string `json:"title"`
 	ReleaseDate string `json:"releaseDate"`
 	Position    int    `json:"position"`
+	Bought      bool   `json:"bought"`
 	SeriesTitle string
 }
 
-// Return struct which contains a list of books
-type Return struct {
-	Latest []Book
+// All func
+func All(c *gin.Context) {
+	series := getData(c)
+
+	c.JSON(200, gin.H{"Books": series})
 }
 
-// Next func
+// Latest func
 func Latest(c *gin.Context) {
+	series := getData(c)
 
+	response := Serie{}
+	for i := 0; i < len(series.Series); i++ {
+		end := len(series.Series[i].Books) - 1
+		book := series.Series[i].Books[end]
+		book.SeriesTitle = series.Series[i].Title
+		response.Books = append(response.Books, book)
+	}
+
+	c.JSON(200, gin.H{"Latest Books": response.Books})
+}
+
+// getData func
+func getData(c *gin.Context) Series {
 	// Open our jsonFile
 	jsonFile, err := os.Open("app/data/index.json")
 
@@ -56,15 +73,25 @@ func Latest(c *gin.Context) {
 
 	json.Unmarshal(byteValue, &series)
 
-	response := Return{}
+	return series
+}
+
+// ToBuy func
+func ToBuy(c *gin.Context) {
+	series := getData(c)
+
+	response := Series{}
 	for i := 0; i < len(series.Series); i++ {
-		end := len(series.Series[i].Books) - 1
-		fmt.Println("Title: ", series.Series[i].Books[end].Title)
-		fmt.Println("Release Date: ", series.Series[i].Books[end].ReleaseDate)
-		book := series.Series[i].Books[end]
-		book.SeriesTitle = series.Series[i].Title
-		response.Latest = append(response.Latest, book)
+		group := series.Series[i]
+		group.Books = nil
+		response.Series = append(response.Series, group)
+		for j := 0; j < len(series.Series[i].Books); j++ {
+			if !series.Series[i].Books[j].Bought {
+				book := series.Series[i].Books[j]
+				response.Series[i].Books = append(response.Series[i].Books, book)
+			}
+		}
 	}
 
-	c.JSON(200, gin.H{"Latest Books": response.Latest})
+	c.JSON(200, gin.H{"Books to buy": response})
 }
