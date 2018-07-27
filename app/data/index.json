@@ -7,62 +7,74 @@
         {
           "title" : "The Pyramid",
           "releaseDate" : "2008",
-          "position": 1
+          "position": 1,
+          "bought": true
         },
         {
           "title" : "Faceless Killers",
           "releaseDate" : "1991",
-          "position": 2
+          "position": 2,
+          "bought": true
         },
         {
           "title" : "The Dogs of Riga",
           "releaseDate" : "1992",
-          "position": 3
+          "position": 3,
+          "bought": true
         },
         {
           "title" : "The White Lioness",
           "releaseDate" : "1993",
-          "position": 4
+          "position": 4,
+          "bought": true
         },
         {
           "title" : "The Man Who Smiled",
           "releaseDate" : "1994",
-          "position": 5
+          "position": 5,
+          "bought": true
         },
         {
           "title" : "Sidetracked",
           "releaseDate" : "1995",
-          "position": 6
+          "position": 6,
+          "bought": true
         },
         {
           "title" : "The Fifth Woman",
           "releaseDate" : "1995",
-          "position": 7
+          "position": 7,
+          "bought": true
         },
         {
           "title" : "One Step Behind",
           "releaseDate" : "1996",
-          "position": 8
+          "position": 8,
+          "bought": true
         },
         {
           "title" : "Firewall",
           "releaseDate" : "1997",
-          "position": 9
+          "position": 9,
+          "bought": true
         },
         {
           "title" : "Before the Frost",
           "releaseDate" : "1998",
-          "position": 10
+          "position": 10,
+          "bought": true
         },
         {
           "title" : "An Event in Autumn",
           "releaseDate" : "2004",
-          "position": 11
+          "position": 11,
+          "bought": true
         },
         {
           "title" : "The Troubled Man",
           "releaseDate" : "2009",
-          "position": 5
+          "position": 12,
+          "bought": true
         }
       ]
     },
@@ -73,42 +85,50 @@
         {
           "title" : "The Assassin's Blade",
           "releaseDate" : "2014",
-          "position": 0
+          "position": 0,
+          "bought": true
         },
         {
           "title" : "Throne of Glass",
           "releaseDate" : "2012",
-          "position": 1
+          "position": 1,
+          "bought": true
         },
         {
           "title" : "Crown of Midnight",
           "releaseDate" : "2013",
-          "position": 2
+          "position": 2,
+          "bought": true
         },
         {
           "title" : "Heir of Fire",
           "releaseDate" : "2014",
-          "position": 3
+          "position": 3,
+          "bought": true
         },
         {
           "title" : "Queen of Shadows",
           "releaseDate" : "2015",
-          "position": 4
+          "position": 4,
+          "bought": true
         },
         {
           "title" : "Empire of Storms",
           "releaseDate" : "2016",
-          "position": 5
+          "position": 5,
+          "bought": true
         },
         {
           "title" : "Tower of Dawn",
           "releaseDate" : "2017",
-          "position": 6
+          "position": 6,
+          "bought": true
         },
         {
           "title" : "Kingdom of Ash",
           "releaseDate" : "23/10/2018",
-          "position": 7
+          "position": 7,
+          "bought": false
         }
       ]
     }
