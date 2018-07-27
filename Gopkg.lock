@@ -3,17 +3,6 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:dbd3707fcc0a2a55d8723e2741d52333d35f826d234535291e178aa35dd44267"
-  name = "github.com/CarolineBenn/cx-go-hack"
-  packages = [
-    "app/web",
-    "app/web/endpoints/main",
-  ]
-  pruneopts = "UT"
-  revision = "3f4700d4b301d827a7b42684cf8b77509b49381c"
-
-[[projects]]
-  branch = "master"
   digest = "1:36fe9527deed01d2a317617e59304eb2c4ce9f8a24115bcc5c2e37b3aee5bae4"
   name = "github.com/gin-contrib/sse"
   packages = ["."]
@@ -58,11 +47,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:d773e525476aefa22ea944a5425a9bfb99819b2e67eeb9b1966454fd57522bbf"
+  digest = "1:dbe2ad3afac439a4bfd3e1b0352c4869dc26aae52662dcab72355408776ed5d5"
   name = "golang.org/x/sys"
   packages = ["unix"]
   pruneopts = "UT"
-  revision = "ac767d655b305d4e9612f5f6e33120b9176c4ad4"
+  revision = "e072cadbbdc8dd3d3ffa82b8b4b9304c261d9311"
 
 [[projects]]
   digest = "1:cbc72c4c4886a918d6ab4b95e347ffe259846260f99ebdd8a198c2331cf2b2e9"
@@ -83,10 +72,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = [
-    "github.com/CarolineBenn/cx-go-hack/app/web",
-    "github.com/CarolineBenn/cx-go-hack/app/web/endpoints/main",
-    "github.com/gin-gonic/gin",
-  ]
+  input-imports = ["github.com/gin-gonic/gin"]
   solver-name = "gps-cdcl"
   solver-version = 1

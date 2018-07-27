@@ -1,4 +1,4 @@
-package main
+package stats
 
 import (
 	"encoding/json"
@@ -7,13 +7,13 @@ import (
 	"os"
 )
 
-// Users struct which contains
+// Series struct which contains
 // an array of users
 type Series struct {
 	Series []Serie `json:"users"`
 }
 
-// User struct which contains a name
+// Serie struct which contains a name
 // a type and a list of social links
 type Serie struct {
 	Author string `json:"author"`
@@ -21,7 +21,7 @@ type Serie struct {
 	Books  []Book `json:"books"`
 }
 
-// Social struct which contains a
+// Book struct which contains a
 // list of links
 type Book struct {
 	Title       string `json:"title"`
